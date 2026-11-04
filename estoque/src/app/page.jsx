@@ -1,0 +1,52 @@
+import { columns } from "./columns"
+import { DataTable } from "./data-table"
+
+async function getData() {
+  return [
+    {
+      nome: "Leite Integral 1L",
+      ean: 7891000100103,
+      categoria: "Laticínios",
+      quantidade: 48,
+      compra: "R$6,49",
+      lucro: "30%",
+      venda: "R$8,44",
+    },
+    {
+      nome: "Leite Integral 1L",
+      ean: 7891000100103,
+      categoria: "Laticínios",
+      quantidade: 48,
+      compra: "R$6,49",
+      lucro: "30%",
+      venda: "R$8,44",
+    },
+    {
+      nome: "Leite Integral 1L",
+      ean: 7891000100103,
+      categoria: "Laticínios",
+      quantidade: 48,
+      compra: "R$6,49",
+      lucro: "30%",
+      venda: "R$8,44",
+    },
+    {
+      nome: "Leite Integral 1L",
+      ean: 7891000100103,
+      categoria: "Laticínios",
+      quantidade: 48,
+      compra: "R$6,49",
+      lucro: "30%",
+      venda: "R$8,44",
+    },
+  ]
+}
+
+
+export default async function Home() {
+  const data = await getData()
+
+  return (
+      <DataTable columns={columns} data={data} />
+  );
+}
