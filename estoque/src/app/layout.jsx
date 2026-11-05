@@ -21,7 +21,7 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <html lang="pt-br">
-      <body>
+      <body className="bg-gray-100">
         <SidebarProvider>
           <AppSidebar />
           <main className="flex flex-col flex-1 w-full min-h-screen">

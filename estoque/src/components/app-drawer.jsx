@@ -1,0 +1,106 @@
+"use client"
+
+import * as React from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+export function AppDrawer() {
+  const [open, setOpen] = React.useState(false)
+  const isMobile = useIsMobile()
+
+  function handleConfirm() {
+
+  }
+
+  const providers = [
+    { label: "Confiança", value: "confiança" },
+    { label: "Assaí", value: "assaí" },
+    { label: "Carrefour", value: "carrefour" },
+  ]
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen} showSwipeHandle={isMobile} swipeDirection={isMobile ? "down" : "right"}>
+      <DrawerTrigger asChild>
+        <Button className="bg-blue-500 mx-5">Entrada de Produtos</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Entradas de Produtos</DrawerTitle>
+          <DrawerDescription>Registre uma entrada no estoque</DrawerDescription>
+        </DrawerHeader>
+        <div className="flex-1 scroll-fade overflow-y-auto p-4">
+          <form className="w-full max-w-sm">
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="form-product">Código</FieldLabel>
+                <Input
+                  id="form-product"
+                  type="text"
+                  placeholder="Código do produto"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="form-quantity">Quantidade</FieldLabel>
+                <Input id="form-product" type="number" placeholder="0" />
+              </Field>
+                <Field>
+                  <FieldLabel htmlFor="form-price">Preço Unitário</FieldLabel>
+                  <Input id="form-price" type="text" placeholder="R$ 0,00" />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="form-provider">Fornecedor</FieldLabel>
+                  <Select items={providers} defaultValue="confiança">
+                    <SelectTrigger id="form-provider">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {providers.map((provider) => (
+                          <SelectItem key={provider.value} value={provider.value}>
+                            {provider.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+            </FieldGroup>
+          </form>
+        </div>
+        <DrawerFooter>
+          <Button onClick={handleConfirm} className="h-[34px] w-full">Adicionar Produto</Button>
+          <DrawerClose asChild>
+            <Button variant="outline" className="w-full">Cancelar</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}
