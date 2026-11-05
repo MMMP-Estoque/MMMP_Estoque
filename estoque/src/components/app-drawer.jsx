@@ -16,7 +16,6 @@ import {
 
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
@@ -47,7 +46,7 @@ export function AppDrawer() {
   return (
     <Drawer open={open} onOpenChange={setOpen} showSwipeHandle={isMobile} swipeDirection={isMobile ? "down" : "right"}>
       <DrawerTrigger asChild>
-        <Button className="bg-blue-500 mx-5">Entrada de Produtos</Button>
+        <Button className="bg-blue-500 mx-5 text-white" variant="outline">Entrada de Produtos</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
