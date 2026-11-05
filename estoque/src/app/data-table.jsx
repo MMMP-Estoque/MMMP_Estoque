@@ -12,10 +12,6 @@ import {
 } from "@/components/ui/table"
 
 import {
-  Field
-} from "@/components/ui/field"
-
-import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon
@@ -33,6 +29,7 @@ import {
 import { features } from "./data-table-features"
 
 import { SearchIcon } from "lucide-react"
+import { AppDrawerEdit } from "@/components/app-drawer-edit"
 
 export function DataTable({ columns, data }) {
   const table = useTable({
@@ -107,7 +104,7 @@ export function DataTable({ columns, data }) {
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="px-17 py-4">
+                  <TableHead key={header.id} className="px-15 py-4">
                     {header.isPlaceholder ? null : (
                       <table.FlexRender header={header} />
                     )}
@@ -125,10 +122,11 @@ export function DataTable({ columns, data }) {
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="px-17 py-4">
+                  <TableCell key={cell.id} className="py-4">
                     <table.FlexRender cell={cell} />
                   </TableCell>
                 ))}
+                <AppDrawerEdit />
               </TableRow>
             ))
           ) : (
