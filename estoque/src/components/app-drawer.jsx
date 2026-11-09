@@ -20,29 +20,11 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-/*
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
- */
 import { submitInventoryForm } from "@/actions/actions"
 
 export function AppDrawer() {
   const [open, setOpen] = React.useState(false)
   const isMobile = useIsMobile()
-
-  /*
-  const providers = [
-    { label: "Confiança", value: "confiança" },
-    { label: "Assaí", value: "assaí" },
-    { label: "Carrefour", value: "carrefour" },
-  ]
-  */
 
   return (
     <Drawer open={open} onOpenChange={setOpen} showSwipeHandle={isMobile} swipeDirection={isMobile ? "down" : "right"}>
@@ -129,31 +111,11 @@ export function AppDrawer() {
                   required
                 />
               </Field>
-              {/*
-                Talvez possa ser útil no futuro, mas por enquanto não tem utilidade
-                <Field>
-                  <FieldLabel htmlFor="form-provider">Fornecedor</FieldLabel>
-                  <Select items={providers} defaultValue="confiança">
-                    <SelectTrigger id="form-provider">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {providers.map((provider) => (
-                          <SelectItem key={provider.value} value={provider.value}>
-                            {provider.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                */}
             </FieldGroup>
           </div>
           <DrawerFooter>
-            <Button type="submit" className="h-[34px] w-full">Adicionar Produto</Button>
             <DrawerClose asChild>
+              <Button type="submit" className="h-[34px] w-full">Adicionar Produto</Button>
               <Button variant="outline" className="w-full">Cancelar</Button>
             </DrawerClose>
           </DrawerFooter>
