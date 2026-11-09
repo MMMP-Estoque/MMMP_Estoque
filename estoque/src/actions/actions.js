@@ -61,3 +61,19 @@ export async function deleteData(formData)
     // também depende da lógica do read para pegar o id
     console.log("onClick funcionou");
 }
+
+export async function readData(formData)
+{
+    const { data, error } = await supabase
+            .from('Estoque')
+            .select('*');
+    
+       
+        if (error) {
+            console.log('Erro ao buscar produtos:', error);
+            return [];
+        }
+    
+        return data;
+    
+}
