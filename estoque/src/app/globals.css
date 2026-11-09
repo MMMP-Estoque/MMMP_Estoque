@@ -120,9 +120,21 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f4f3;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
   }
   html {
     @apply font-sans;

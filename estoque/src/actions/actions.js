@@ -56,7 +56,23 @@ export async function submitEditForm(formData) {
     console.log(ean, preco_compra, margem_lucro);
 }
 
-export async function deleteData(formData)
+export async function readData()
+{
+    const { data, error } = await supabase
+            .from('Estoque')
+            .select('*');
+    
+       
+        if (error) {
+            console.log('Erro ao buscar produtos:', error);
+            return [];
+        }
+    
+        return data;
+    
+}
+
+export async function deleteData()
 {
     // também depende da lógica do read para pegar o id
     console.log("onClick funcionou");
