@@ -22,14 +22,11 @@ import {
     FieldDescription
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { deleteData, submitEditForm } from "@/actions/actions"
 
 export function AppDrawerEdit() {
     const [open, setOpen] = React.useState(false)
     const isMobile = useIsMobile()
-
-    function handleConfirm() {
-
-    }
 
     return (
         <Drawer open={open} onOpenChange={setOpen} showSwipeHandle={isMobile} swipeDirection={isMobile ? "down" : "right"}>
@@ -39,46 +36,62 @@ export function AppDrawerEdit() {
                 </Button>
             </DrawerTrigger>
             <DrawerContent>
-                <DrawerHeader>
-                    <DrawerTitle>Editar produto</DrawerTitle>
-                    <DrawerDescription>Leite integral 1L</DrawerDescription>
-                </DrawerHeader>
-                <div className="flex-1 scroll-fade overflow-y-auto p-4">
-                    <form className="w-full max-w-sm">
+                <form className="w-full max-w-sm" action={submitEditForm}>
+                    <DrawerHeader>
+                        <DrawerTitle>Editar produto</DrawerTitle>
+                        <DrawerDescription>Leite integral 1L</DrawerDescription>
+                    </DrawerHeader>
+                    <div className="flex-1 scroll-fade overflow-y-auto p-4">
                         <FieldGroup>
                             <Field>
                                 <FieldLabel htmlFor="form-ean">EAN</FieldLabel>
                                 <Input
                                     id="form-ean"
-                                    type="text"
+                                    name="form-ean"
+                                    type="number"
                                     placeholder="Digite o código EAN"
-                                    value="7891000100103"
+                                    defaultValue="7891000100103"
                                     required
                                 />
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="form-price">Preço Unitário</FieldLabel>
-                                <Input id="form-price" type="text" placeholder="R$ 0,00" value="6,49" />
+                                <Input 
+                                id="form-price" 
+                                name="form-price"
+                                type="number" 
+                                step="0.01"
+                                placeholder="0.0" 
+                                defaultValue="8.44" 
+                                required
+                                />
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="form-profit">Acréscimo no preço (%)</FieldLabel>
-                                <Input id="form-profit" type="number" placeholder="0" value="30" />
+                                <Input 
+                                id="form-profit" 
+                                name="form-profit"
+                                type="number" 
+                                placeholder="0" 
+                                defaultValue="30" 
+                                required
+                                />
                                 <FieldDescription>
                                     O percentual é aplicado sobre o preço unitário.
                                 </FieldDescription>
                             </Field>
-                            <Button onClick={handleConfirm} className="h-[34px] w-full">Salvar alterações</Button>
-                    <DrawerClose asChild>
-                        <Button variant="outline" className="w-full">Cancelar</Button>
-                    </DrawerClose>
+                            <Button type="submit" className="h-[34px] w-full">Salvar alterações</Button>
+                            <DrawerClose asChild>
+                                <Button variant="outline" className="w-full">Cancelar</Button>
+                            </DrawerClose>
                         </FieldGroup>
-                    </form>
-                </div>
-                <DrawerFooter>
-                    <DrawerClose asChild>
-                        <Button variant="destructive" className="w-full">Deletar produto</Button>
-                    </DrawerClose>
-                </DrawerFooter>
+                    </div>
+                    <DrawerFooter>
+                        <DrawerClose asChild>
+                            <Button onClick={deleteData} variant="destructive" className="w-full">Deletar produto</Button>
+                        </DrawerClose>
+                    </DrawerFooter>
+                </form>
             </DrawerContent>
         </Drawer>
     )
