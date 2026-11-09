@@ -40,7 +40,7 @@ export function AppSidebar() {
                             <Package />
                             <span>Produtos</span>
                         </SidebarMenuButton>
-                        <SidebarMenuButton render={<a href="/" />}>
+                        <SidebarMenuButton render={<a href="/estoque" />}>
                             <Network />
                             <span>Estoque</span>
                         </SidebarMenuButton>
