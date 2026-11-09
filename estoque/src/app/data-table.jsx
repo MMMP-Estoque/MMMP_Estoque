@@ -104,7 +104,7 @@ export function DataTable({ columns, data }) {
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="px-15 py-4">
+                  <TableHead key={header.id} className="px-13 py-4">
                     {header.isPlaceholder ? null : (
                       <table.FlexRender header={header} />
                     )}
