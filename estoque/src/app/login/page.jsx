@@ -15,6 +15,7 @@ export default function () {
                 </form>
             </section>
             <p id="mensagem" hidden></p>
+            <script src="login.js"></script>
         </main>
     );
 }

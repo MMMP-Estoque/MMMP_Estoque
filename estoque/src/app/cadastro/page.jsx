@@ -22,7 +22,7 @@ export default function Cadastro() {
                 </form>
             </section>
             <p id="mensagem" hidden></p>
-            <script src=""
+            <script src="cadastro.js"></script>
         </main>
     );
 }

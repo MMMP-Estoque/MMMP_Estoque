@@ -29,6 +29,7 @@ export default function Inicio() {
                 </a>
             </nav>
             <button type="button" class="botao" id="sair">Sair</button>
+            <script src="inicio.js"></script>
         </main>
     );
 }
