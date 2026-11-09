@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { deleteData, submitEditForm } from "@/actions/actions"
 
-export function AppDrawerEdit() {
+export function AppDrawerEdit({ data }) {
     const [open, setOpen] = React.useState(false)
     const isMobile = useIsMobile()
 
@@ -39,56 +39,95 @@ export function AppDrawerEdit() {
                 <form className="w-full max-w-sm" action={submitEditForm}>
                     <DrawerHeader>
                         <DrawerTitle>Editar produto</DrawerTitle>
-                        <DrawerDescription>Leite integral 1L</DrawerDescription>
+                        <DrawerDescription>{data.produto}</DrawerDescription>
                     </DrawerHeader>
                     <div className="flex-1 scroll-fade overflow-y-auto p-4">
                         <FieldGroup>
+                            <Field>
+                                <Input
+                                    type="hidden"
+                                    id="id"
+                                    name="id"
+                                    defaultValue={data.id}
+                                />
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="form-product">Nome do Produto</FieldLabel>
+                                <Input
+                                    id="form-product"
+                                    name="form-product"
+                                    type="text"
+                                    placeholder={data.produto}
+                                    defaultValue={data.produto}
+                                    required
+                                />
+                            </Field>
                             <Field>
                                 <FieldLabel htmlFor="form-ean">EAN</FieldLabel>
                                 <Input
                                     id="form-ean"
                                     name="form-ean"
                                     type="number"
-                                    placeholder="Digite o código EAN"
-                                    defaultValue="7891000100103"
+                                    placeholder={data.ean}
+                                    defaultValue={data.ean}
+                                    required
+                                />
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="form-category">Categoria</FieldLabel>
+                                <Input
+                                    id="form-category"
+                                    name="form-category"
+                                    type="text"
+                                    placeholder={data.categoria}
+                                    defaultValue={data.categoria}
+                                    required
+                                />
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="form-quantity">Quantidade</FieldLabel>
+                                <Input
+                                    id="form-quantity"
+                                    name="form-quantity"
+                                    type="number"
+                                    placeholder={data.quantidade}
+                                    defaultValue={data.quantidade}
                                     required
                                 />
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="form-price">Preço Unitário</FieldLabel>
-                                <Input 
-                                id="form-price" 
-                                name="form-price"
-                                type="number" 
-                                step="0.01"
-                                placeholder="0.0" 
-                                defaultValue="8.44" 
-                                required
+                                <Input
+                                    id="form-price"
+                                    name="form-price"
+                                    type="number"
+                                    step="0.01"
+                                    placeholder={data.preco_compra}
+                                    defaultValue={data.preco_compra}
+                                    required
                                 />
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="form-profit">Acréscimo no preço (%)</FieldLabel>
-                                <Input 
-                                id="form-profit" 
-                                name="form-profit"
-                                type="number" 
-                                placeholder="0" 
-                                defaultValue="30" 
-                                required
+                                <Input
+                                    id="form-profit"
+                                    name="form-profit"
+                                    type="number"
+                                    placeholder={data.margem_lucro}
+                                    defaultValue={data.margem_lucro}
+                                    required
                                 />
                                 <FieldDescription>
                                     O percentual é aplicado sobre o preço unitário.
                                 </FieldDescription>
                             </Field>
-                            <Button type="submit" className="h-[34px] w-full">Salvar alterações</Button>
-                            <DrawerClose asChild>
-                                <Button variant="outline" className="w-full">Cancelar</Button>
-                            </DrawerClose>
                         </FieldGroup>
                     </div>
                     <DrawerFooter>
                         <DrawerClose asChild>
-                            <Button onClick={deleteData} variant="destructive" className="w-full">Deletar produto</Button>
+                            <Button type="submit" className="h-[34px] w-full my-2">Salvar alterações</Button>
+                            <Button variant="outline" className="w-full my-2">Cancelar</Button>
+                            <Button onClick={deleteData} variant="destructive" className="w-full my-2">Deletar produto</Button>
                         </DrawerClose>
                     </DrawerFooter>
                 </form>
