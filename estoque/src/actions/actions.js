@@ -65,7 +65,7 @@ export async function readData() {
     return data;
 }
 
-export async function deleteData() {
-    console.log("onClick funcionou");
+export async function deleteData(id) {
+    await supabase.from("Estoque").delete().eq("id", id);
     revalidatePath("/");
 }
