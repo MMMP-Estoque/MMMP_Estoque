@@ -94,6 +94,7 @@ export function AppDrawer() {
                   name="form-quantity"
                   type="number"
                   placeholder="0"
+                  required
                 />
               </Field>
               <Field>
@@ -104,6 +105,7 @@ export function AppDrawer() {
                   type="number"
                   step="0.01"
                   placeholder="0.0"
+                  required
                 />
               </Field>
               <Field>
@@ -113,6 +115,7 @@ export function AppDrawer() {
                   name="form-profit"
                   type="number"
                   placeholder="0"
+                  required
                 />
               </Field>
               <Field>
@@ -123,6 +126,7 @@ export function AppDrawer() {
                   type="number"
                   step="0.01"
                   placeholder="0.0"
+                  required
                 />
               </Field>
               {/*
