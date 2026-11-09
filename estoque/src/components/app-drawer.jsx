@@ -20,6 +20,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+/*
 import {
   Select,
   SelectContent,
@@ -28,20 +29,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+ */
+import { submitInventoryForm } from "@/actions/actions"
 
 export function AppDrawer() {
   const [open, setOpen] = React.useState(false)
   const isMobile = useIsMobile()
 
-  function handleConfirm() {
-
-  }
-
+  /*
   const providers = [
     { label: "Confiança", value: "confiança" },
     { label: "Assaí", value: "assaí" },
     { label: "Carrefour", value: "carrefour" },
   ]
+  */
 
   return (
     <Drawer open={open} onOpenChange={setOpen} showSwipeHandle={isMobile} swipeDirection={isMobile ? "down" : "right"}>
@@ -49,30 +50,83 @@ export function AppDrawer() {
         <Button className="bg-blue-500 mx-5 text-white" variant="outline">Entrada de Produtos</Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Entradas de Produtos</DrawerTitle>
-          <DrawerDescription>Registre uma entrada no estoque</DrawerDescription>
-        </DrawerHeader>
-        <div className="flex-1 scroll-fade overflow-y-auto p-4">
-          <form className="w-full max-w-sm">
+        <form className="w-full max-w-sm" action={submitInventoryForm}>
+          <DrawerHeader>
+            <DrawerTitle>Entradas de Produtos</DrawerTitle>
+            <DrawerDescription>Registre uma entrada no estoque</DrawerDescription>
+          </DrawerHeader>
+          <div className="flex-1 scroll-fade overflow-y-auto p-4">
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="form-product">Código</FieldLabel>
+                <FieldLabel htmlFor="form-product">Nome do Produto</FieldLabel>
                 <Input
                   id="form-product"
+                  name="form-product"
                   type="text"
-                  placeholder="Código do produto"
+                  placeholder="Arroz branco 5kg"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="form-ean">EAN</FieldLabel>
+                <Input
+                  id="form-ean"
+                  name="form-ean"
+                  type="number"
+                  placeholder="7896006711117"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="form-category">Categoria</FieldLabel>
+                <Input
+                  id="form-category"
+                  name="form-category"
+                  type="text"
+                  placeholder="Alimentos"
                   required
                 />
               </Field>
               <Field>
                 <FieldLabel htmlFor="form-quantity">Quantidade</FieldLabel>
-                <Input id="form-product" type="number" placeholder="0" />
+                <Input
+                  id="form-quantity"
+                  name="form-quantity"
+                  type="number"
+                  placeholder="0"
+                />
               </Field>
-                <Field>
-                  <FieldLabel htmlFor="form-price">Preço Unitário</FieldLabel>
-                  <Input id="form-price" type="text" placeholder="R$ 0,00" />
-                </Field>
+              <Field>
+                <FieldLabel htmlFor="form-price">Preço Unitário</FieldLabel>
+                <Input
+                  id="form-price"
+                  name="form-price"
+                  type="number"
+                  step="0.01"
+                  placeholder="0.0"
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="form-profit">Margem de lucro</FieldLabel>
+                <Input
+                  id="form-profit"
+                  name="form-profit"
+                  type="number"
+                  placeholder="0"
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="form-sell">Preço de Venda</FieldLabel>
+                <Input
+                  id="form-sell"
+                  name="form-sell"
+                  type="number"
+                  step="0.01"
+                  placeholder="0.0"
+                />
+              </Field>
+              {/*
+                Talvez possa ser útil no futuro, mas por enquanto não tem utilidade
                 <Field>
                   <FieldLabel htmlFor="form-provider">Fornecedor</FieldLabel>
                   <Select items={providers} defaultValue="confiança">
@@ -90,15 +144,16 @@ export function AppDrawer() {
                     </SelectContent>
                   </Select>
                 </Field>
+                */}
             </FieldGroup>
-          </form>
-        </div>
-        <DrawerFooter>
-          <Button onClick={handleConfirm} className="h-[34px] w-full">Adicionar Produto</Button>
-          <DrawerClose asChild>
-            <Button variant="outline" className="w-full">Cancelar</Button>
-          </DrawerClose>
-        </DrawerFooter>
+          </div>
+          <DrawerFooter>
+            <Button type="submit" className="h-[34px] w-full">Adicionar Produto</Button>
+            <DrawerClose asChild>
+              <Button variant="outline" className="w-full">Cancelar</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </form>
       </DrawerContent>
     </Drawer>
   )

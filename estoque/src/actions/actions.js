@@ -1,0 +1,30 @@
+"use server";
+
+import { supabase } from "@/lib/supabase/client";
+
+export async function submitInventoryForm(formData) {
+    const produto = formData.get("form-product");
+    const ean = formData.get("form-ean");
+    const categoria = formData.get("form-category");
+    const quantidade = formData.get("form-quantity");
+    const preco_compra = formData.get("form-price");
+    const margem_lucro = formData.get("form-profit");
+    const preco_venda = formData.get("form-sell");
+
+    const insertData = async () => {
+        const { data, error } = await supabase.from("Estoque").insert({
+            produto: produto,
+            ean: ean,
+            categoria: categoria,
+            quantidade: quantidade,
+            preco_compra: preco_compra,
+            margem_lucro: margem_lucro,
+            preco_venda: preco_venda
+        })
+
+        if (data) console.log(data);
+        if (error) console.log(error);
+    }
+
+    insertData();
+}
