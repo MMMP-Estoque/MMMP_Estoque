@@ -74,7 +74,17 @@ export async function readData() {
     return data;
 }
 
-export async function deleteData(id) {
-    await supabase.from("Estoque").delete().eq("id", id);
+export async function deleteData(id) 
+{
+    const { error } = await supabase
+        .from("Estoque")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+        console.log('Erro ao deletar produto:', error);
+        return;
+    }
+
     revalidatePath("/");
 }
