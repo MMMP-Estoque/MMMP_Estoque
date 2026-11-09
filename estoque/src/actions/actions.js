@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/lib/supabase/client";
+import { revalidatePath } from "next/cache";
 
 export async function submitInventoryForm(formData) {
     const produto = formData.get("form-product");
@@ -27,6 +28,7 @@ export async function submitInventoryForm(formData) {
     }
 
     insertData();
+    revalidatePath("/");
 }
 
 export async function submitEditForm(formData) {
@@ -53,7 +55,7 @@ export async function submitEditForm(formData) {
 
     */
 
-    console.log(ean, preco_compra, margem_lucro);
+    revalidatePath("/");
 }
 
 export async function readData()
@@ -76,4 +78,5 @@ export async function deleteData()
 {
     // também depende da lógica do read para pegar o id
     console.log("onClick funcionou");
+    revalidatePath("/");
 }
