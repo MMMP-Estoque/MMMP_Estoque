@@ -126,7 +126,7 @@ export function DataTable({ columns, data }) {
                     <table.FlexRender cell={cell} />
                   </TableCell>
                 ))}
-                <AppDrawerEdit />
+                <AppDrawerEdit data={data[row.id]}/>
               </TableRow>
             ))
           ) : (
