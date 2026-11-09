@@ -18,6 +18,7 @@ import {
   Field,
   FieldGroup,
   FieldLabel,
+  FieldDescription
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { submitInventoryForm } from "@/actions/actions"
@@ -91,7 +92,7 @@ export function AppDrawer() {
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="form-profit">Margem de lucro</FieldLabel>
+                <FieldLabel htmlFor="form-profit">Acréscimo no preço (%)</FieldLabel>
                 <Input
                   id="form-profit"
                   name="form-profit"
@@ -99,17 +100,9 @@ export function AppDrawer() {
                   placeholder="0"
                   required
                 />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="form-sell">Preço de Venda</FieldLabel>
-                <Input
-                  id="form-sell"
-                  name="form-sell"
-                  type="number"
-                  step="0.01"
-                  placeholder="0.0"
-                  required
-                />
+                <FieldDescription>
+                  O percentual é aplicado sobre o preço unitário.
+                </FieldDescription>
               </Field>
             </FieldGroup>
           </div>

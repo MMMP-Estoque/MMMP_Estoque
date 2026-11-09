@@ -125,9 +125,9 @@ export function AppDrawerEdit({ data }) {
                     </div>
                     <DrawerFooter>
                         <DrawerClose asChild>
-                            <Button type="submit" className="h-[34px] w-full my-2">Salvar alterações</Button>
-                            <Button variant="outline" className="w-full my-2">Cancelar</Button>
-                            <Button onClick={() => deleteData(data.id)} variant="destructive" className="w-full my-2">Deletar produto</Button>
+                            <Button type="submit" className="h-[34px] w-full">Salvar alterações</Button>
+                            <Button variant="outline" className="w-full">Cancelar</Button>
+                            <Button onClick={() => deleteData(data.id)} variant="destructive" className="w-full my-4">Deletar produto</Button>
                         </DrawerClose>
                     </DrawerFooter>
                 </form>
