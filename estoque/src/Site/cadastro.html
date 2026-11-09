@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini Market Place</title>
+    <link rel="stylesheet" href="stylecad.css">
+</head>
+
+<body>
+
+    <main class="caixa">
+
+        <h1 class="logo">Mini Market Place</h1>
+
+        <section id="tela-cadastro">
+
+            <h2>Cadastrar</h2>
+
+            <form id="form-cadastro">
+
+                <label for="cad-email">E-mail</label>
+                <input type="email" id="cad-email" required>
+
+                <label for="cad-senha">Senha</label>
+                <input type="password" id="cad-senha"
+                    minlength="6" required>
+
+                <label for="cad-confirma">Confirmar senha</label>
+                <input type="password" id="cad-confirma" required>
+
+                <button type="submit" class="botao">
+                    Cadastrar
+                </button>
+
+            </form>
+
+        </section>
+
+        <p id="mensagem" hidden></p>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script>
+        const formCadastro = document.getElementById("form-cadastro");
+        const botaoCadastrar = formCadastro.querySelector("button[type=submit]");
+
+        formCadastro.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("cad-email").value.trim();
+            const senha = document.getElementById("cad-senha").value;
+            const confirma = document.getElementById("cad-confirma").value;
+
+            if (senha !== confirma) {
+                mostrarMensagem("As senhas não coincidem.");
+                return;
+            }
+
+            botaoCadastrar.disabled = true;
+            const { data, error } = await clienteSupabase.auth.signUp({
+                email: email,
+                password: senha
+            });
+            botaoCadastrar.disabled = false;
+
+            if (error) {
+                mostrarMensagem(traduzirErro(error));
+                return;
+            }
+
+            if (data.session) {
+                mostrarMensagem("Cadastro realizado com sucesso!");
+            } else {
+                mostrarMensagem("Cadastro realizado! Confirme seu e-mail para poder entrar.");
+            }
+
+            formCadastro.reset();
+            setTimeout(() => { window.location.href = "login.html"; }, 3000);
+        });
+    </script>
+
+</body>
+</html>

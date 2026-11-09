@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Market Place</title>
+  <link rel="stylesheet" href="stylecad.css">
+</head>
+
+<body>
+
+  <main class="caixa">
+
+    <h1 class="logo">Mini Market Place</h1>
+
+    <section id="tela-login">
+
+      <h2>Entrar</h2>
+
+      <form id="form-login">
+
+        <label for="login-email">E-mail</label>
+        <input type="email" id="login-email" required>
+
+        <label for="login-senha">Senha</label>
+        <input type="password" id="login-senha" required>
+
+        <button type="submit" class="botao">Entrar</button>
+
+      </form>
+
+    </section>
+
+    <p id="mensagem" hidden></p>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script>
+    const formLogin = document.getElementById("form-login");
+    const botaoEntrar = formLogin.querySelector("button[type=submit]");
+
+    formLogin.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("login-email").value.trim();
+      const senha = document.getElementById("login-senha").value;
+
+      botaoEntrar.disabled = true;
+      const { error } = await clienteSupabase.auth.signInWithPassword({
+        email: email,
+        password: senha
+      });
+      botaoEntrar.disabled = false;
+
+      if (error) {
+        mostrarMensagem(traduzirErro(error));
+        return;
+      }
+
+      if (error) {
+        mostrarMensagem(traduzirErro(error));
+        return;
+      }
+
+      window.location.href = "inicio.html";
+    });
+  </script>
+
+</body>
+
+</html>
