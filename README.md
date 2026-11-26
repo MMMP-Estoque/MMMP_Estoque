@@ -50,7 +50,7 @@ A solução busca garantir maior confiabilidade das informações, reduzir erros
 | Interface | Administrativa e de autoatendimento |
 | Instituição | FATEC Sorocaba |
 | Curso | Tecnologia em Análise e Desenvolvimento de Sistemas |
-| Disciplina | Engenharia de Software I |
+| Disciplina | Engenharia de Software II |
 
 O MMMP Estoque tem como propósito centralizar as informações administrativas e operacionais do minimercado, permitindo o gerenciamento integrado de produtos, movimentações de estoque, compras, vendas e finanças.
 
